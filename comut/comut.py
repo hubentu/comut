@@ -1778,6 +1778,27 @@ class CoMut:
         return leg
 
     def waterfall(self, data):
+        '''Sort genes and samples for waterfall plot.
+
+        Params:
+        -------
+        data: pandas dataframe
+            A tidy dataframe containing data. Required columns are
+            sample, category, and value. Other columns are ignored.
+
+            Example:
+            -------
+            sample   | category | value
+            ----------------------------
+            Sample_1 | TP53     | Missense
+            Sample_1 | Gender   | Male
+
+        Returns:
+        --------
+        sorder: list of samples ordered by genes.
+        gorder: list of genes in ascending order.
+
+        '''
         # Reshape data: wide format with samples as rows and genes as columns, counting occurrences
         wide_data = data.pivot_table(index='sample', columns='category', aggfunc=len, fill_value=0)
     
